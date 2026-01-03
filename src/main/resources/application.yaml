@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: crud
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notes?createDatabaseIfNotExist=true
+    username: postgres
+    password: nurali2006
+  jpa:
+    show-sql: true
+  flyway:
+    enabled: false
