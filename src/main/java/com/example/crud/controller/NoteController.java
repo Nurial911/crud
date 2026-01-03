@@ -11,5 +11,4 @@ import org.springframework.web.bind.annotation.RestController;
 public class NoteController {
     private final NoteService noteService;
 
-
 }
