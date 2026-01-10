@@ -2,6 +2,7 @@ package com.example.crud.controller;
 
 import com.example.crud.dto.CreateNoteRequest;
 import com.example.crud.dto.NoteDto;
+import com.example.crud.dto.UpdateNoteRequest;
 import com.example.crud.service.NoteService;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +32,8 @@ public class NoteController {
         return ResponseEntity.created(uri).body(created);
     }
 
-
+    @PutMapping("/{id}")
+    public ResponseEntity<NoteDto> updateNote(@RequestBody UpdateNoteRequest updateNoteRequest, @PathVariable Long id){
+        return noteService.updateNote(updateNoteRequest,id);
+    }
 }

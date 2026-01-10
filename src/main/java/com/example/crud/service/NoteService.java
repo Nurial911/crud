@@ -2,11 +2,13 @@ package com.example.crud.service;
 
 import com.example.crud.dto.CreateNoteRequest;
 import com.example.crud.dto.NoteDto;
+import com.example.crud.dto.UpdateNoteRequest;
 import com.example.crud.mappers.NoteMapper;
 import com.example.crud.repositories.NoteRepository;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @Service
@@ -35,6 +37,15 @@ public class NoteService {
         return noteMapper.toDto(saved);
     }
 
+    public ResponseEntity<NoteDto> updateNote(UpdateNoteRequest request, Long id){
+        var note =  noteRepository.findById(id).orElse(null);
+        if(note == null){
+            return ResponseEntity.notFound().build();
+        }
+        noteMapper.update(request,note);
+        noteRepository.save(note);
+        return ResponseEntity.ok(noteMapper.toDto(note));
+    }
 
 
 }
