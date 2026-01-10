@@ -8,7 +8,7 @@ import com.example.crud.repositories.NoteRepository;
 import lombok.Data;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 @Service
@@ -45,6 +45,15 @@ public class NoteService {
         noteMapper.update(request,note);
         noteRepository.save(note);
         return ResponseEntity.ok(noteMapper.toDto(note));
+    }
+
+    public ResponseEntity<Void> deleteNote(Long id){
+        var note =  noteRepository.findById(id).orElse(null);
+        if(note == null){
+            return ResponseEntity.notFound().build();
+        }
+        noteRepository.delete(note);
+        return ResponseEntity.noContent().build();
     }
 
 
