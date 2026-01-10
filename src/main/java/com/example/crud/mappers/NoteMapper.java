@@ -1,0 +1,13 @@
+package com.example.crud.mappers;
+
+import com.example.crud.dto.CreateNoteRequest;
+import com.example.crud.dto.NoteDto;
+import com.example.crud.entities.Note;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring")
+public interface NoteMapper {
+    NoteDto toDto(Note note);
+
+    Note toNoteEntity(CreateNoteRequest createNoteRequest);
+}
